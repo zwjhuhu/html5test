@@ -1,17 +1,19 @@
-package com.skywin.test.dao;
+package com.skywin.redis.dao;
+
+import com.skywin.UserInf;
 
 public interface UserDao {  
     /** 
      * @param uid 
      * @param address 
      */  
-    void save(User user);  
+    void save(UserInf user);  
   
     /** 
      * @param uid 
      * @return 
      */  
-    User read(String uid);  
+    UserInf read(String uid);  
   
     /** 
      * @param uid 

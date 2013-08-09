@@ -11,13 +11,46 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.junit>4.11</version.junit>
 		<version.servlet>2.5</version.servlet>
+		<version.jsp>2.1</version.jsp>
 		<version.lucene>3.6.2</version.lucene>
 		<version.spring>3.1.4.RELEASE</version.spring>
+		<version.dbcp>1.4</version.dbcp>
+		<version.jstl>1.2</version.jstl>
+		<version.hibernate>4.1.8.Final</version.hibernate>
+		<version.log4j>1.2.14</version.log4j>
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>maven</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+      		<releases>
+	      		<enabled>true</enabled>
+	      	</releases>
+	      	<snapshots>
+	        	<enabled>true</enabled>
+	      	</snapshots>
+	      	<id>public</id>
+	      	<url>http://192.168.100.231:8080/nexus/content/groups/public/</url>
+	    </repository>
+	</repositories>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${version.spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 			<version>${version.spring}</version>
 		</dependency>
 		<dependency>
@@ -31,10 +64,53 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.0.5.RELEASE</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queryparser</artifactId>
 			<version>${version.lucene}</version>
+		</dependency>
+		-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${version.dbcp}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${version.log4j}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${version.hibernate}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc5</artifactId>
+			<version>11.2.0.3</version>
+			<classifier>jdk15</classifier>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -46,6 +122,17 @@
 			<artifactId>servlet-api</artifactId>
 			<version>${version.servlet}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${version.jsp}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${version.jstl}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

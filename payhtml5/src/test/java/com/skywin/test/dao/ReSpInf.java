@@ -2,7 +2,7 @@ package com.skywin.test.dao;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class ReSpInf implements Serializable {
 
 	private static final long serialVersionUID = -1267719235225203410L;
 
