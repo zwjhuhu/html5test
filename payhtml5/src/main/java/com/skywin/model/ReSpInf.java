@@ -3,12 +3,16 @@ package com.skywin.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "re_sp_inf")
@@ -18,10 +22,13 @@ public class ReSpInf implements Serializable {
 	@GeneratedValue
 	private Long spid;
 
+	@NotEmpty(message="编码不能为空")
+	@Column(unique = true, nullable = false)
 	private String spcode;
 
 	private String spfullname;
 
+	@NotEmpty(message="名称不能为空")
 	private String spname;
 
 	private String localid;
@@ -34,6 +41,9 @@ public class ReSpInf implements Serializable {
 	private Date modifieddate;
 
 	private String modifieduser;
+	
+	@Email(message="邮件格式不正确")
+	private String email;
 
 	public Long getSpid() {
 		return spid;
@@ -107,4 +117,19 @@ public class ReSpInf implements Serializable {
 		this.modifieduser = modifieduser;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "ReSpInf [spid=" + spid + ", spcode=" + spcode + ", spfullname="
+				+ spfullname + ", spname=" + spname + "]";
+	}
+
+	
 }

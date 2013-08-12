@@ -1,19 +1,21 @@
 package com.skywin.redis.dao;
 
-import com.skywin.UserInf;
+import com.skywin.model.UserRedisAccessInf;
+import com.skywin.model.UserRedisInf;
+
 
 public interface UserDao {  
     /** 
      * @param uid 
      * @param address 
      */  
-    void save(UserInf user);  
+    void save(UserRedisInf user);  
   
     /** 
      * @param uid 
      * @return 
      */  
-    UserInf read(String uid);  
+    UserRedisInf read(String uid);  
   
     /** 
      * @param uid 

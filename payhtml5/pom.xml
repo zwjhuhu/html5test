@@ -18,8 +18,9 @@
 		<version.jstl>1.2</version.jstl>
 		<version.hibernate>4.1.8.Final</version.hibernate>
 		<version.log4j>1.2.14</version.log4j>
+		<version.hibernate.validator>5.0.1.Final</version.hibernate.validator>
 	</properties>
-	
+
 	<repositories>
 		<repository>
 			<id>maven</id>
@@ -31,17 +32,17 @@
 			</snapshots>
 		</repository>
 		<repository>
-      		<releases>
-	      		<enabled>true</enabled>
-	      	</releases>
-	      	<snapshots>
-	        	<enabled>true</enabled>
-	      	</snapshots>
-	      	<id>public</id>
-	      	<url>http://192.168.100.231:8080/nexus/content/groups/public/</url>
-	    </repository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>public</id>
+			<url>http://192.168.100.231:8080/nexus/content/groups/public/</url>
+		</repository>
 	</repositories>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -64,13 +65,8 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.0.5.RELEASE</version>
 		</dependency>
-		<!--  
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-queryparser</artifactId>
-			<version>${version.lucene}</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.apache.lucene</groupId> <artifactId>lucene-queryparser</artifactId> 
+			<version>${version.lucene}</version> </dependency> -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -97,14 +93,19 @@
 			<version>1.7.0</version>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${version.log4j}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${version.hibernate}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${version.hibernate.validator}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -116,6 +117,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version>
+		</dependency>
+		<!-- <dependency> <groupId>com.fasterxml.jackson.jaxrs</groupId> <artifactId>jackson-jaxrs-xml-provider</artifactId> 
+			<version>2.2.2</version> </dependency> -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>

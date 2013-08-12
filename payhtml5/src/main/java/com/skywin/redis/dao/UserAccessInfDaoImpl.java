@@ -1,7 +1,6 @@
 package com.skywin.redis.dao;
 
 import java.io.Serializable;
-import java.util.concurrent.locks.Lock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,18 +8,18 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JacksonJsonRedisSerializer;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
-import com.skywin.model.UserRedisInf;
+import com.skywin.model.UserRedisAccessInf;
 
-@Service("userRedisDao")
-public class UserDaoImpl implements UserDao {
+@Service("userAccessRedisDao")
+public class UserAccessInfDaoImpl implements UserAccessInfDao {
+
 	private RedisTemplate<Serializable, Serializable> redisTemplate;
 
-	private RedisSerializer<UserRedisInf> valueSerializer = new JacksonJsonRedisSerializer(
-			UserRedisInf.class);
+	private RedisSerializer<UserRedisAccessInf> valueSerializer = new JacksonJsonRedisSerializer(
+			UserRedisAccessInf.class);
 
 	public RedisTemplate<Serializable, Serializable> getRedisTemplate() {
 		return redisTemplate;
@@ -33,31 +32,34 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void save(final UserRedisInf user) {
+	public void save(final UserRedisAccessInf user) {
 		redisTemplate.execute(new RedisCallback<Object>() {
 			@Override
 			public Object doInRedis(RedisConnection connection)
 					throws DataAccessException {
 				connection.set(
 						redisTemplate.getStringSerializer().serialize(
-								UserRedisInf.REDIS_PREFIX + user.getUid()),
-								valueSerializer.serialize(user));
+								UserRedisAccessInf.REDIS_PREFIX
+										+ user.getUsername() + "."
+										+ user.getId()),
+						valueSerializer.serialize(user));
 				return null;
 			}
 		});
 	}
 
 	@Override
-	public UserRedisInf read(final String uid) {
-		return redisTemplate.execute(new RedisCallback<UserRedisInf>() {
+	public UserRedisAccessInf read(final String username, final int id) {
+		return redisTemplate.execute(new RedisCallback<UserRedisAccessInf>() {
 			@Override
-			public UserRedisInf doInRedis(RedisConnection connection)
+			public UserRedisAccessInf doInRedis(RedisConnection connection)
 					throws DataAccessException {
 				byte[] key = redisTemplate.getStringSerializer().serialize(
-						UserRedisInf.REDIS_PREFIX + uid);
+						UserRedisAccessInf.REDIS_PREFIX + username + "." + id);
 				if (connection.exists(key)) {
 					byte[] value = connection.get(key);
-					UserRedisInf user = valueSerializer.deserialize(value);
+					UserRedisAccessInf user = valueSerializer
+							.deserialize(value);
 
 					return user;
 				}
@@ -67,14 +69,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(final String uid) {
+	public void delete(final String username, final int id) {
 		redisTemplate.execute(new RedisCallback<Object>() {
 			public Object doInRedis(RedisConnection connection) {
 				connection.del(redisTemplate.getStringSerializer().serialize(
-						UserRedisInf.REDIS_PREFIX + uid));
+						UserRedisAccessInf.REDIS_PREFIX + username + "." + id));
 				return null;
 			}
 		});
 	}
-
 }

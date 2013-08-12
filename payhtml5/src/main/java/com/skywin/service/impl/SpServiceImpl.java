@@ -25,7 +25,6 @@ public class SpServiceImpl implements SpService {
 	@Override
 	public void save(ReSpInf sp) {
 		spDao.save(sp);
-
 	}
 
 	@Override
@@ -59,11 +58,12 @@ public class SpServiceImpl implements SpService {
 		pageModel.setSize(size);
 		List<ReSpInf> data = new ArrayList<ReSpInf>();
 		long total = 0;
+		String totalHql = "select count(*) " + hql;
 		if (params == null) {
-			total = spDao.count(hql);
+			total = spDao.count(totalHql);
 			data = spDao.find(hql, page, size);
 		} else {
-			total = spDao.count(hql, params);
+			total = spDao.count(totalHql, params);
 			data = spDao.find(hql, params, page, size);
 		}
 		pageModel.setTotal(total);

@@ -7,9 +7,9 @@ import com.skywin.model.PageModel;
 import com.skywin.model.ReSpInf;
 
 public interface SpService {
-	public void save(ReSpInf user);
+	public void save(ReSpInf inf);
 
-	public void update(ReSpInf user);
+	public void update(ReSpInf inf);
 
 	public void delete(long id);
 
