@@ -49,9 +49,8 @@ public class UserServiceImpl implements UserService {
 		if (t != null) {
 			logger.debug(t.getUsername() + "---" + "login success!");
 			return t;
-		}else
-			logger.debug(t.getUsername() + "---" + "login fail!");
-			
+		}
+
 		return null;
 	}
 

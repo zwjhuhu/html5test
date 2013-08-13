@@ -32,6 +32,10 @@
 	<filter>
 		<filter-name>UserFilter</filter-name>
 		<filter-class>com.skywin.filter.UserFilter</filter-class>
+		<init-param>
+			<param-name>allowPatterns</param-name>
+			<param-value>/login,/loginout,/resources/.*</param-value>
+		</init-param>
 	</filter>
 
 	<filter-mapping>
@@ -57,4 +61,7 @@
 		<param-value>classpath:beans.xml</param-value>
 	</context-param>
 
+	<welcome-file-list>
+		<welcome-file>/index</welcome-file>
+	</welcome-file-list>
 </web-app>

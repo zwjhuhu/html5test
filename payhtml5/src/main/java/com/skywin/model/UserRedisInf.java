@@ -8,6 +8,8 @@ public class UserRedisInf extends ReUserInf {
 
 	private Long firstlogintime;
 
+	private boolean loginkeeping;
+
 	private int tracecount;
 
 	public String getUid() {
@@ -32,6 +34,14 @@ public class UserRedisInf extends ReUserInf {
 
 	public void setTracecount(int tracecount) {
 		this.tracecount = tracecount;
+	}
+
+	public boolean isLoginkeeping() {
+		return loginkeeping;
+	}
+
+	public void setLoginkeeping(boolean loginkeeping) {
+		this.loginkeeping = loginkeeping;
 	}
 
 	@Override
