@@ -71,4 +71,9 @@ public class SpServiceImpl implements SpService {
 		return pageModel;
 	}
 
+	@Override
+	public ReSpInf get(long id) {
+		return spDao.get(ReSpInf.class, id);
+	}
+
 }

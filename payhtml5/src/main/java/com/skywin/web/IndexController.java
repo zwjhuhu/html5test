@@ -4,9 +4,10 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class IndexController {
 		this.userDao = userDao;
 	}
 
-	@RequestMapping(value = "/index")
+	@RequestMapping(value = {"/index","/"})
 	public String index() {
 		return "index";
 	}
@@ -78,9 +79,26 @@ public class IndexController {
 	}
 
 	@RequestMapping("/logout")
-	public String logout(Model model, HttpSession session) {
-		// model.asMap().remove("loginUser");
-		// session.invalidate();
+	public String logout(Model model, HttpServletRequest req,HttpServletResponse resp) {
+		Cookie[] cookies = req.getCookies();
+		if (cookies == null || cookies.length == 0) {
+			;
+		} else {
+			String userid = null;
+			for (Cookie c : cookies) {
+				if ("userid".equals(c.getName())) {
+					userid = c.getValue();
+					break;
+				}
+			}
+			if(!StringUtils.isBlank(userid)){
+				userDao.delete(userid);
+				Cookie cookie = new Cookie("userid",userid);
+				cookie.setMaxAge(0);
+				resp.addCookie(cookie);
+			}
+		}
+			
 		return "redirect:/login";
 	}
 }

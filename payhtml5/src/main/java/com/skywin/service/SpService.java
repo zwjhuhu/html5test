@@ -14,6 +14,8 @@ public interface SpService {
 	public void delete(long id);
 
 	public ReSpInf load(long id);
+	
+	public ReSpInf get(long id);
 
 	public List<ReSpInf> list();
 

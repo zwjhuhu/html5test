@@ -2,6 +2,7 @@ package com.skywin.test.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,23 @@ public class SpDaoTest extends AbstractJUnit4SpringContextTests {
 		inf.setSpname("asdsd232");
 		inf.setSpstate(1);
 		spService.save(inf);
+	}
+	
+	@Test
+	public void savePages() {
+		for(int i=1;i<1000;i++){
+			ReSpInf inf = new ReSpInf();
+			inf.setEmail("email"+i+"@123.com");
+			inf.setDiscountrate(1);
+			inf.setLocalid("123"+i);
+			inf.setModifieddate(new Date());
+			inf.setModifieduser("admin");
+			inf.setSpcode("spcode"+i);
+			inf.setSpfullname("spname"+UUID.randomUUID().toString());
+			inf.setSpname("spname"+i);
+			inf.setSpstate(i%4==0?0:1);
+			spService.save(inf);
+		}
 	}
 
 	@Test

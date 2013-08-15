@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<div id="footer">
+	<div id="f_line"></div>
+	<div class="container">
+		<div class="footer sixteen columns">
+			<div class="three columns alpha">
+				<h3>NAVIGATE</h3>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Portfolio</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contacts</a></li>
+				</ul>
+			</div>
+
+			<div class="three columns">
+				<h3>POWERED BY</h3>
+				<ul>
+					<li><a href="#">PHP</a></li>
+					<li><a href="#">MySQL</a></li>
+					<li><a href="#">Apache</a></li>
+					<li><a href="#">Wordpress</a></li>
+					<li><a href="#">Linux</a></li>
+				</ul>
+			</div>
+
+			<div class="social three columns">
+				<h3>WE'RE SOCIAL</h3>
+				<ul>
+					<li><a class="twitter" href="#">Twitter</a></li>
+					<li><a class="facebook" href="#">Facebook</a></li>
+					<li><a class="flickr" href="#">Flickr</a></li>
+					<li><a class="rss" href="#">RSS Feed</a></li>
+				</ul>
+			</div>
+
+			<div class="facebook_box seven columns omega"></div>
+
+		</div>
+	</div>
+</div>
+<div id="footer_bottom">
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="copyright ten columns alpha">Copyright &copy; 2012
+				XXXX. All Rights Reserved</div>
+			<div class="links six columns alpha omega">
+				<a href="#">Sitemap</a> | <a href="#">Privacy</a> 
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END footer -->

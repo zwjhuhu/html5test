@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!-- Header - Phone & Social
+				================================================== -->
+<script type="text/javascript">
+$(function(){
+	var text = $("div.phone").text()+new Date().pattern("yyyy-MM-dd EEE hh:mm:ss");
+	$("div.phone").text(text);
+});
+</script>
+<div class="sixteen columns header">
+	<!--  <div class="phone">Call Us Now! +1-800-453-5577</div>-->
+	<div class="phone">登录用户: ${loginUser.name} </div>
+	<div class="social">
+<!--<a class="twitter" href="#"></a> <a class="rss" href="#"></a>-->
+	<a href="logout">退出登录</a>
+	</div>
+</div>
+<div class="clear"></div>
+<!--  
+<div class="des">
+	找网站模板就上<a href="http://cssmoban.com/">模板之家</a>
+</div>
+-->
+<!-- Header - Logo & Navigation
+				================================================== -->
+<div class="sixteen columns top">
+	<div class="logo four columns alpha">
+		<a href="#"><img
+			src="${contextPath}/resources/images/logo.gif" alt="福分管理系统" /></a>
+	</div>
+	<div class="navigation twelve columns alpha omega">
+		<ul id="nav" class="sf-menu sf-shadow">
+			<li class="active"><a data-description="首页"
+				href="index.html">首页</a></li>
+			<li><a data-description="Feature Pages" href="about.html">管理页面</a>
+				<ul>
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="services.html">Services</a></li>
+					<li><a href="testimonials.html">Testimonials</a></li>
+					<li><a href="sp/manager">sp管理</a></li>
+					<li><a href="shortcodes.html">Shortcodes</a></li>
+					<li><a href="text-columns.html">Text Columns</a></li>
+					<li><a href="#">3rd Level</a>
+						<ul>
+							<li><a href="#">Third Level</a></li>
+							<li><a href="#">Element</a></li>
+							<li><a href="#">Here</a></li>
+						</ul></li>
+				</ul>
+			<li><a data-description="Our Work" href="portfolio2.html">Portfolio</a>
+				<ul>
+					<li><a href="portfolio2.html">2 Columns</a></li>
+					<li><a href="portfolio3.html">3 Columns</a></li>
+					<li><a href="portfolio4.html">4 Columns</a></li>
+				</ul></li>
+			<li><a data-description="Our News" href="blog.html">Blog</a>
+				<ul>
+					<li><a href="blog.html">Blog Layout</a></li>
+					<li><a href="blog-post.html">Blog Post</a></li>
+				</ul></li>
+			<li><a data-description="Get In Touch" href="contact.html">Contacts</a></li>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div id="separator">
+		<span></span>
+	</div>
+
+</div>
+<div class="clear"></div>

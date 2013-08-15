@@ -125,7 +125,7 @@ public class UserFilter implements Filter {
 			user.setTracecount(count);
 		}
 		req.removeAttribute("useraccessinf");
-		req.removeAttribute("loginUser");
+		//req.removeAttribute("loginUser");
 	}
 
 	@Override
