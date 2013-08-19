@@ -107,7 +107,7 @@ public class UserFilter implements Filter {
 	}
 	
 	private void preUserInf(UserRedisInf user, HttpServletRequest req) {
-		String ip = req.getRemoteAddr();
+		String ip = req.getHeader("x-forwarded-for");
 		String url = req.getRequestURI();
 		String ua = req.getHeader("user-agent");
 		UserRedisAccessInf inf = new UserRedisAccessInf();
