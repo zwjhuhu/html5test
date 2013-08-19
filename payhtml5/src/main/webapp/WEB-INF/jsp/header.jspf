@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri='http://java.sun.com/jstl/fmt_rt' prefix='fmt' %>
 
 <%
 	String contextPath = request.getContextPath();
 	pageContext.setAttribute("contextPath", contextPath);
+	String fulladdr = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+	fulladdr=fulladdr.substring(0, fulladdr.length()-1)+contextPath;
+	pageContext.setAttribute("fulladdr", fulladdr);
 %>
     
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8" />
-	<title>index</title>
+	
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 
@@ -24,7 +28,7 @@
 	<link rel="stylesheet" href="${contextPath}/resources/jquery/jquery-ui-1.10.3.custom.css">
 
 	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="${contextPath}/resources/js/html5.js"></script>
 	<![endif]-->
 
 	<!-- Favicons
@@ -38,9 +42,52 @@
 	================================================== -->
 	<script src="${contextPath}/resources/jquery/jquery-1.7.2.js"></script>
 	<script src="${contextPath}/resources/jquery/jquery-ui-1.10.3.custom.js"></script>
+	<script src="${contextPath}/resources/js/superfish.js"></script>
 	<script src="${contextPath}/resources/jquery/jquery.flexslider.js"></script>
 	<script src="${contextPath}/resources/jquery/jquery.tweet.js"></script>
-	<script src="${contextPath}/resources/jquery/jquery.fancybox.js"></script>
-	<script src="${contextPath}/resources/js/superfish.js"></script>
 	<script src="${contextPath}/resources/js/selectnav.js"></script>
+	<script src="${contextPath}/resources/jquery/jquery.fancybox.js"></script>
+	<script>
+	$(function(){
+		//自定菜单的生成
+		var username='${loginUser.username}';
+		var keyname=username+"_localMenus";
+		(function(){
+			if(!localStorage)
+				return ;
+			var username = "${loginUser.username}";
+			var localMenu = {};
+			if(!localStorage.getItem(keyname)){
+				var menus = [];
+				localMenu.menus = menus;
+				menus.push({text:'自定菜单1',href:'/test1',sel:1});
+				menus.push({text:'自定菜单2',href:'/test1',sel:1});
+				menus.push({text:'sp管理',href:'/sp/manager',sel:0});
+				localStorage.setItem(keyname,JSON.stringify(localMenu));
+			}
+		}());
+		if(localStorage.getItem(keyname)){
+			localMenu = JSON.parse(localStorage.getItem(keyname));
+			if(localMenu.length){
+				//
+			}else{
+				if(localMenu.menus.length>0){
+					var menuBar = $("li").has('li>a[data-description="自定菜单"]');
+					if(menuBar){
+						menuBar.append("<ul></ul>");
+						var ul = menuBar.find("ul");
+						var menus = localMenu.menus;
+						for(var i=0;i<menus.length;i++){
+							if(!menus[i].sel){	
+								continue;
+							}
+							var menu = "<li><a href='${contextPath}"+menus[i].href+"'>"+menus[i].text+"</a></li>";
+							ul.append(menu);
+						}
+					}
+				}
+			}
+		}
+	});
+	</script>
 	<script src="${contextPath}/resources/js/functions.js"></script>

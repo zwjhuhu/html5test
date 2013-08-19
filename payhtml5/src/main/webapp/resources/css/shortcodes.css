@@ -90,10 +90,10 @@ img.align_right { float: right; margin-bottom: 15px; margin-left: 20px; }
   * Accordion
   ***************************************/  
 .accordion { border:1px solid #dedede; }
-.accordion h3 { background:url(images/acc_bg.png) center left no-repeat #fafafa; border-top:1px solid #dedede; padding-left:20px; color:#999; font-size:16px; }
+.accordion h3 { background:url(../images/acc_bg.png) center left no-repeat #fafafa; border-top:1px solid #dedede; padding-left:20px; color:#999; font-size:16px; }
 .accordion h3 { margin-bottom:0; cursor:pointer; }
-.accordion h3.active { background:url(images/acc_bg_active.png) center left no-repeat #fafafa; color:#86AE3F; }
+.accordion h3.active { background:url(../images/acc_bg_active.png) center left no-repeat #fafafa; color:#86AE3F; }
 .accordion h3:first-child { border-top:none; }
 .accordion .acc_content { display:none; background:#fff; padding:5px; border-top:1px solid #dedede; }
 
-.divider2 { width:100%; height:7px; background:url(images/divider2.png); margin-top:10px; margin-bottom:10px; }
+.divider2 { width:100%; height:7px; background:url(../images/divider2.png); margin-top:10px; margin-bottom:10px; }

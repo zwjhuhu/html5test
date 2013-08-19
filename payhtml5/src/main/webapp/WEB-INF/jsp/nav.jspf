@@ -5,8 +5,25 @@
 				================================================== -->
 <script type="text/javascript">
 $(function(){
-	var text = $("div.phone").text()+new Date().pattern("yyyy-MM-dd EEE hh:mm:ss");
-	$("div.phone").text(text);
+	
+	var timeText = new Date().pattern("yyyy-MM-dd EEE hh:mm:ss");
+	var div = $("div.phone");
+	var originText = div.text();
+	
+	setInterval(function(){
+		timeText = new Date().pattern("yyyy-MM-dd EEE hh:mm:ss");
+		div.text(originText+timeText);
+	}, 500);
+	
+	//标记选中的导航项
+	var actname = $('head title').text();
+	$('#nav>li').each(function(i){
+		if($(this).find("a").attr('data-description')=='自定菜单'){
+		}else{
+			$(this).has('li>a[href$="'+actname+'"]').addClass("active");
+		}
+	});
+	
 });
 </script>
 <div class="sixteen columns header">
@@ -18,11 +35,6 @@ $(function(){
 	</div>
 </div>
 <div class="clear"></div>
-<!--  
-<div class="des">
-	找网站模板就上<a href="http://cssmoban.com/">模板之家</a>
-</div>
--->
 <!-- Header - Logo & Navigation
 				================================================== -->
 <div class="sixteen columns top">
@@ -32,35 +44,48 @@ $(function(){
 	</div>
 	<div class="navigation twelve columns alpha omega">
 		<ul id="nav" class="sf-menu sf-shadow">
-			<li class="active"><a data-description="首页"
-				href="index.html">首页</a></li>
-			<li><a data-description="Feature Pages" href="about.html">管理页面</a>
+			<li><a data-description="首页"
+				href="${contextPath}/index">首页</a></li>
+			<li><a data-description="管理功能" href="#">管理页面</a>
 				<ul>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="testimonials.html">Testimonials</a></li>
-					<li><a href="sp/manager">sp管理</a></li>
-					<li><a href="shortcodes.html">Shortcodes</a></li>
-					<li><a href="text-columns.html">Text Columns</a></li>
-					<li><a href="#">3rd Level</a>
+					<li><a href="${contextPath}/sp/manager">sp管理</a></li>
+					<li><a href="${contextPath}/access/manager">访问记录</a></li>
+					<li><a href="${contextPath}/menuedit">自定义菜单编辑</a></li>
+					<li><a href="${contextPath}/about">About Us</a></li>
+					<li><a href="${contextPath}/services">介绍文字</a></li>
+					<li><a href="${contextPath}/testimonials">Testimonials</a></li>
+					<li><a href="${contextPath}/shortcodes">小例子代码</a></li>
+					<li><a href="${contextPath}/text_columns">分栏文章</a></li>
+					<li><a href="#">三级菜单示例</a>
 						<ul>
 							<li><a href="#">Third Level</a></li>
 							<li><a href="#">Element</a></li>
 							<li><a href="#">Here</a></li>
 						</ul></li>
 				</ul>
-			<li><a data-description="Our Work" href="portfolio2.html">Portfolio</a>
+			</li>
+			<li><a data-description="自定菜单" href="#">常用功能</a>
+<!--  				<ul>
+					<li><a href="${contextPath}/portfolio2">2 Columns</a></li>
+					<li><a href="${contextPath}/portfolio3">3 Columns</a></li>
+					<li><a href="${contextPath}/portfolio4">4 Columns</a></li>
+				</ul>
+				-->
+			</li>
+			<li><a data-description="作品展示" href="#">展示</a>
 				<ul>
-					<li><a href="portfolio2.html">2 Columns</a></li>
-					<li><a href="portfolio3.html">3 Columns</a></li>
-					<li><a href="portfolio4.html">4 Columns</a></li>
-				</ul></li>
-			<li><a data-description="Our News" href="blog.html">Blog</a>
+					<li><a href="${contextPath}/portfolio2">2 Columns</a></li>
+					<li><a href="${contextPath}/portfolio3">3 Columns</a></li>
+					<li><a href="${contextPath}/portfolio4">4 Columns</a></li>
+				</ul>
+			</li>
+			<li><a data-description="Blog" href="/${contextPath}/blog">Blog</a>
 				<ul>
-					<li><a href="blog.html">Blog Layout</a></li>
-					<li><a href="blog-post.html">Blog Post</a></li>
-				</ul></li>
-			<li><a data-description="Get In Touch" href="contact.html">Contacts</a></li>
+					<li><a href="${contextPath}/blog">留言板</a></li>
+					<li><a href="${contextPath}/blog_post">发送留言</a></li>
+				</ul>
+			</li>
+			<li><a data-description="Contact" href="${contextPath}/contact">联系我们</a></li>
 			</li>
 		</ul>
 	</div>

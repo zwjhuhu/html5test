@@ -37,7 +37,7 @@ public class IndexController {
 		this.userDao = userDao;
 	}
 
-	@RequestMapping(value = {"/index","/"})
+	@RequestMapping(value = { "/index", "/" })
 	public String index() {
 		return "index";
 	}
@@ -47,9 +47,14 @@ public class IndexController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/accessFail", method = RequestMethod.GET)
+	public String accessFail() {
+		return "accessFail";
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(String username, String password, String loginkeeping,
-			HttpServletResponse resp) {
+			HttpServletRequest req, HttpServletResponse resp){
 		ReUserInf user = new ReUserInf();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -66,7 +71,6 @@ public class IndexController {
 				keeping = true;
 			redisuser.setLoginkeeping(keeping);
 			redisuser.setFirstlogintime(new Date().getTime());
-			redisuser.setTracecount(0);
 			userDao.save(redisuser);
 			Cookie cookie = new Cookie("userid", userid);
 			int expiry = -1;
@@ -79,7 +83,8 @@ public class IndexController {
 	}
 
 	@RequestMapping("/logout")
-	public String logout(Model model, HttpServletRequest req,HttpServletResponse resp) {
+	public String logout(Model model, HttpServletRequest req,
+			HttpServletResponse resp) {
 		Cookie[] cookies = req.getCookies();
 		if (cookies == null || cookies.length == 0) {
 			;
@@ -91,14 +96,20 @@ public class IndexController {
 					break;
 				}
 			}
-			if(!StringUtils.isBlank(userid)){
+			if (!StringUtils.isBlank(userid)) {
 				userDao.delete(userid);
-				Cookie cookie = new Cookie("userid",userid);
+				Cookie cookie = new Cookie("userid", userid);
 				cookie.setMaxAge(0);
 				resp.addCookie(cookie);
+				UserRedisInf user = userDao.read(userid);
+				if(user!=null){
+					if(!user.isLoginkeeping()){
+						userDao.delete(userid);
+					}
+				}
 			}
 		}
-			
+		
 		return "redirect:/login";
 	}
 }

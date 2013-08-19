@@ -1,23 +1,25 @@
 package com.skywin.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+@SuppressWarnings("serial")
 public class UserRedisAccessInf implements Serializable {
 
 	public static final String REDIS_PREFIX = "user.access.";
-	private int id;
+	private String id;
 	private String ip;
 	private String username;
 	private String url;
 	private String useragent;
-	private Long starttime;
-	private Long endtime;
+	private Date starttime;
+	private Date endtime;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -53,19 +55,19 @@ public class UserRedisAccessInf implements Serializable {
 		this.useragent = useragent;
 	}
 
-	public Long getStarttime() {
+	public Date getStarttime() {
 		return starttime;
 	}
 
-	public void setStarttime(Long starttime) {
+	public void setStarttime(Date starttime) {
 		this.starttime = starttime;
 	}
 
-	public Long getEndtime() {
+	public Date getEndtime() {
 		return endtime;
 	}
 
-	public void setEndtime(Long endtime) {
+	public void setEndtime(Date endtime) {
 		this.endtime = endtime;
 	}
 

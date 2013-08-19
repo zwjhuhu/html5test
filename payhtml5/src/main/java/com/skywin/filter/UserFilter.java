@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -73,6 +74,15 @@ public class UserFilter implements Filter {
 						sendToLogin(req, resp);
 					} else {
 						preUserInf(user, req);
+						//权限检查
+						if(user.getRoleid().equals(1)){
+							if(url.startsWith("/sp")||url.startsWith("/admin")||url.startsWith("/access")){
+								resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
+								req.getRequestDispatcher("/WEB-INF/jsp/accessFail.jsp").forward(req, resp);
+								postUserInf(user, req);
+								return ;
+							}
+						}
 						chain.doFilter(req, resp);
 						postUserInf(user, req);
 						req.removeAttribute("userid");
@@ -97,14 +107,13 @@ public class UserFilter implements Filter {
 	}
 	
 	private void preUserInf(UserRedisInf user, HttpServletRequest req) {
-		int count = user.getTracecount() + 1;
 		String ip = req.getRemoteAddr();
 		String url = req.getRequestURI();
 		String ua = req.getHeader("user-agent");
 		UserRedisAccessInf inf = new UserRedisAccessInf();
-		inf.setId(count);
+		inf.setId(UUID.randomUUID().toString());
 		inf.setIp(ip);
-		inf.setStarttime(new Date().getTime());
+		inf.setStarttime(new Date());
 		inf.setUrl(url);
 		inf.setUseragent(ua);
 		inf.setUsername(user.getUsername());
@@ -118,11 +127,8 @@ public class UserFilter implements Filter {
 		UserRedisAccessInf inf = (UserRedisAccessInf) req
 				.getAttribute("useraccessinf");
 		if (inf != null) {
-			int count = inf.getId();
-			inf.setEndtime(new Date().getTime());
+			inf.setEndtime(new Date());
 			userAccessInfDao.save(inf);
-			userDao.save(user);
-			user.setTracecount(count);
 		}
 		req.removeAttribute("useraccessinf");
 		//req.removeAttribute("loginUser");

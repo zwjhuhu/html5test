@@ -1,7 +1,7 @@
 $(function(){
 	mobile_menu();
 	init_menu();
-	init_tweets();
+	//init_tweets();
 	init_fancybox();
 	portfolio_filter();
 	contact_form();
@@ -88,9 +88,10 @@ function contact_form() {
 		var subject = $("input#subject").val();
 		var text    = $("textarea#text").val();
 		var post    = 'name=' + name + '&email=' + email + '&subject=' + subject + '&text=' + text;
-		$.post('sendmail.php', post, function(data) {
+/*		$.post('sendmail.php', post, function(data) {
 			$("div#responce").html(data);
-		});
+		});*/
+		alert("参数："+post);
 	});
 	
 }

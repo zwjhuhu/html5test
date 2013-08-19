@@ -1,6 +1,9 @@
 package com.skywin.redis.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -18,7 +21,7 @@ public class UserAccessInfDaoImpl implements UserAccessInfDao {
 
 	private RedisTemplate<Serializable, Serializable> redisTemplate;
 
-	private RedisSerializer<UserRedisAccessInf> valueSerializer = new JacksonJsonRedisSerializer(
+	private RedisSerializer<UserRedisAccessInf> valueSerializer = new JacksonJsonRedisSerializer<UserRedisAccessInf>(
 			UserRedisAccessInf.class);
 
 	public RedisTemplate<Serializable, Serializable> getRedisTemplate() {
@@ -66,6 +69,35 @@ public class UserAccessInfDaoImpl implements UserAccessInfDao {
 				return null;
 			}
 		});
+	}
+
+	@Override
+	public List<UserRedisAccessInf> readByUser(final String username) {
+
+		return redisTemplate
+				.execute(new RedisCallback<List<UserRedisAccessInf>>() {
+					public List<UserRedisAccessInf> doInRedis(
+							RedisConnection connection)
+							throws DataAccessException {
+						byte[] pats = redisTemplate.getStringSerializer()
+								.serialize(
+										UserRedisAccessInf.REDIS_PREFIX
+												+ username + ".*");
+						Set<byte[]> keys = connection.keys(pats);
+						List<UserRedisAccessInf> list = new ArrayList<UserRedisAccessInf>();
+						if (keys != null && !keys.isEmpty()) {
+							for (byte[] key : keys) {
+								if (connection.exists(key)) {
+									byte[] value = connection.get(key);
+									UserRedisAccessInf user = valueSerializer
+											.deserialize(value);
+									list.add(user);
+								}
+							}
+						}
+						return list;
+					}
+				});
 	}
 
 	@Override

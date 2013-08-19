@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	pageContext.setAttribute("contextPath", contextPath);
+	String fulladdr = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+	fulladdr=fulladdr.substring(0, fulladdr.length()-1)+contextPath;
+	pageContext.setAttribute("fulladdr", fulladdr);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +23,7 @@ a:hover { text-decoration: underline; }
 </head>
 <body>
 <div class="center">
-<img src="resources/images/404-1.png" height="427" width="640"><br>
+<img src="${contextPath}/resources/images/404-1.png" height="427" width="640"><br>
 <div class="errmsg">
 <!--  <span>请求地址: ${pageContext.request.requestURI}</span>
 <span>ip地址: ${pageContext.request.remoteHost}</span>

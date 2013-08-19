@@ -6,6 +6,7 @@
 <!--[if IE 8 ]><html class="ie ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html> <!--<![endif]-->
 <head>
+<title>index</title>
 <%@include file="header.jspf" %>
 	<script>
 		$(document).ready(function() {
@@ -115,7 +116,7 @@
 				<div class="sidebar six columns omega">
 				
 					<div id="news">
-						<div id="heading">News & Events</div>
+						<div id="heading">新闻事件</div>
 						<div id="content" class="six columns alpha">
 							<div class="news_item">
 								<div class="pic two columns">

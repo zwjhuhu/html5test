@@ -28,7 +28,6 @@ public class UserRedisTest extends AbstractJUnit4SpringContextTests {
 		user.setFirstlogintime(new Date().getTime());
 		user.setUsername("asdsd");
 		user.setPassword("123123");
-		user.setTracecount(3);
 		userDao.save(user);
 	}
 	
@@ -52,7 +51,6 @@ public class UserRedisTest extends AbstractJUnit4SpringContextTests {
 		user.setFirstlogintime(new Date().getTime());
 		user.setUsername("asdsd");
 		user.setPassword("123123");
-		user.setTracecount(3);
 		RedisSerializer<UserRedisInf> valueSerializer = new JacksonJsonRedisSerializer(
 				UserRedisInf.class);
 		byte[] bs = valueSerializer.serialize(user);

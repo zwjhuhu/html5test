@@ -1,5 +1,6 @@
 package com.skywin.model;
 
+@SuppressWarnings("serial")
 public class UserRedisInf extends ReUserInf {
 
 	public static final String REDIS_PREFIX = "user.id.";
@@ -9,8 +10,6 @@ public class UserRedisInf extends ReUserInf {
 	private Long firstlogintime;
 
 	private boolean loginkeeping;
-
-	private int tracecount;
 
 	public String getUid() {
 		return uid;
@@ -28,14 +27,6 @@ public class UserRedisInf extends ReUserInf {
 		this.firstlogintime = firstlogintime;
 	}
 
-	public int getTracecount() {
-		return tracecount;
-	}
-
-	public void setTracecount(int tracecount) {
-		this.tracecount = tracecount;
-	}
-
 	public boolean isLoginkeeping() {
 		return loginkeeping;
 	}
@@ -47,9 +38,8 @@ public class UserRedisInf extends ReUserInf {
 	@Override
 	public String toString() {
 		return "UserRedisInf [uid=" + uid + ", firstlogintime="
-				+ firstlogintime + ", tracecount=" + tracecount
-				+ ", username()=" + getUsername() + ", name()=" + getName()
-				+ "]";
+				+ firstlogintime + ", username=" + getUsername() + ", name="
+				+ getName() + "]";
 	}
 
 }

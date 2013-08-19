@@ -2,6 +2,7 @@ package com.skywin.service.impl;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -52,6 +53,11 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<ReUserInf> findAll() {
+		return userDao.find("from ReUserInf");
 	}
 
 }

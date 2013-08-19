@@ -6,10 +6,19 @@
 <!--[if IE 8 ]><html class="ie ie8" > <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html> <!--<![endif]-->
 <head>
-
-	<%@include file="../header.jspf" %>
+<title>sp/manager</title>
+<%@include file="../header.jspf" %>
 <style type="text/css">
 #sptable tbody tr:hover { background: none repeat scroll 0 0 rgba(192, 192, 192, 0.8); }
+#spinftable {
+	 width:100%;
+}
+#spinftable td {
+	padding:2px;
+}
+#spinftable tr input[type="text"],#spinftable tr input[type="email"]{
+	width:90%;
+}
 </style>
 <script type="text/javascript">
 var spm = {};
@@ -195,7 +204,7 @@ $(function(){
 				<br />
 				<form id="spform" name="spform" method="post" action="#" />
 				<input type="hidden" name="spid" form="spform"/>
-				<table  class="pricing">
+				<table id="spinftable">
 					<tr>
 					<td>
 						sp编码:<input type="text" name="spcode" form="spform"/>
