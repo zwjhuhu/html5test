@@ -78,7 +78,7 @@ public class UserFilter implements Filter {
 						if(user.getRoleid().equals(1)){
 							if(url.startsWith("/sp")||url.startsWith("/admin")||url.startsWith("/access")){
 								resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-								req.getRequestDispatcher("/WEB-INF/jsp/accessFail.jsp").forward(req, resp);
+								req.getRequestDispatcher("/WEB-INF/jsp/403.jsp").forward(req, resp);
 								postUserInf(user, req);
 								return ;
 							}

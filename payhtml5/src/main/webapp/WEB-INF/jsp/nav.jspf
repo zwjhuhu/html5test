@@ -31,7 +31,7 @@ $(function(){
 	<div class="phone">登录用户: ${loginUser.name} </div>
 	<div class="social">
 <!--<a class="twitter" href="#"></a> <a class="rss" href="#"></a>-->
-	<a href="logout">退出登录</a>
+	<a href="${contextPath}/logout">退出登录</a>
 	</div>
 </div>
 <div class="clear"></div>

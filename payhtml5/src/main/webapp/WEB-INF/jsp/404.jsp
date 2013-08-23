@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>发现异常</title>
+<title>404</title>
 <style type="text/css">
 body { vertical-align: middle; }
 div.center { position:absolute; top:50%; left:50%; margin:-25% 0 0 -320px; width:640px; min-height: 427px; padding: 0px; }
@@ -23,7 +23,7 @@ a:hover { text-decoration: underline; }
 </head>
 <body>
 <div class="center">
-<img src="${contextPath}/resources/images/404-1.png" height="427" width="640"><br>
+<img src="${contextPath}/resources/images/404.png" height="427" width="640"><br>
 <div class="errmsg">
 <!--  <span>请求地址: ${pageContext.request.requestURI}</span>
 <span>ip地址: ${pageContext.request.remoteHost}</span>
