@@ -20,7 +20,7 @@
 		<version.log4j>1.2.14</version.log4j>
 		<version.hibernate.validator>5.0.1.Final</version.hibernate.validator>
 	</properties>
-
+<!--  
 	<repositories>
 		<repository>
 			<id>maven</id>
@@ -42,7 +42,7 @@
 			<url>http://192.168.100.231:8080/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
-
+-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -198,6 +198,23 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>  
+            	<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>7.1.6.v20100715</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/payhtml5</contextPath>
+					</webAppConfig>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8080</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>  
+        	</plugin>  
 		</plugins>
 	</build>
 </project>
